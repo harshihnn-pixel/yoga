@@ -1,5 +1,6 @@
 # secrets and donor database – never commit
 donations/api/config.php
+donations/api/settings.php
 donations/api/data/*
 !donations/api/data/.htaccess
 !donations/api/data/index.html
