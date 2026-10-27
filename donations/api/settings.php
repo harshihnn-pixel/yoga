@@ -22,8 +22,8 @@ if ( ! isset( durations()[ $dd ] ) ) {
 ok( array(
 	'ready'      => '' !== trim( (string) $o['key_id'] ) && '' !== trim( (string) $o['key_secret'] ),
 	'check'      => array(
-		'key_id_found'     => '' !== trim( (string) $o['key_id'] ),
-		'key_secret_found' => '' !== trim( (string) $o['key_secret'] ),
+		'key_id_found'     => '' !== trim( (string) $o['rzp_live_TplbSWgK6HZWPA'] ),
+		'key_secret_found' => '' !== trim( (string) $o['8ayM03VRZFGuVXMZ67FOswgu'] ),
 		'env_names_seen'   => isset( $o['_env_names_seen'] ) ? $o['_env_names_seen'] : array(),
 	),
 	'mode'       => rzp_mode(),
@@ -47,4 +47,4 @@ ok( array(
 	'dedication' => (bool) $o['allow_dedication'],
 	'anonymous'  => (bool) $o['allow_anonymous'],
 	'color'      => $o['primary_color'],
-)
+) );
