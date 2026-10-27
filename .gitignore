@@ -1,5 +1,4 @@
 # secrets and donor database – never commit
-donations/api/config.local.php
 donations/api/config.php
 donations/api/data/*
 !donations/api/data/.htaccess
