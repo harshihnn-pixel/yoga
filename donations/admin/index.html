@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Donations Admin – Sanjeevini Sparsh Yoga</title>
+<style>
+:root{--c:#7c5cc4;--cd:#5a3fa0;--soft:#f3effb;--ink:#1f2937;--mut:#6b7280;--line:#e5e7eb;--bg:#f6f7f9;--ok:#15803d;--warn:#b45309;--bad:#b91c1c}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--c)}
+button,.btn{font:inherit;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink);padding:8px 14px;border-radius:8px;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn:hover,button:hover{border-color:var(--c)}
+.btn-p{background:var(--c);border-color:var(--c);color:#fff}.btn-p:hover{background:var(--cd)}
+.btn-d{color:var(--bad);border-color:#fecaca}
+input,select{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;max-width:100%}
+.top{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.top-in{max-width:1200px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{font-weight:700;font-size:17px;margin-right:auto}
+.mode{font-size:11px;font-weight:700;padding:3px 8px;border-radius:20px;margin-left:8px;vertical-align:middle}
+.mode-live{background:#dcfce7;color:var(--ok)}.mode-test{background:#fef3c7;color:var(--warn)}
+nav.tabs{display:flex;gap:4px;flex-wrap:wrap}
+nav.tabs a{padding:8px 12px;border-radius:8px;text-decoration:none;color:var(--ink);font-weight:600}
+nav.tabs a.on{background:var(--soft);color:var(--cd)}
+.wrap{max-width:1200px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:24px;margin:0 0 16px}h2{font-size:18px;margin:24px 0 10px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-decoration:none;color:inherit}
+.card span{display:block;color:var(--mut);font-size:13px}.card strong{display:block;font-size:22px;margin-top:2px}.card em{font-style:normal;color:var(--mut);font-size:12px}
+.card.warn strong{color:var(--bad)}
+.box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin-top:16px}
+.grid2{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:16px}@media(max-width:900px){.grid2{grid-template-columns:1fr}}
+.tbl-wrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:12px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{background:#fafafa;color:var(--mut);font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.03em}
+tr:last-child td{border-bottom:0}
+tr.click{cursor:pointer}tr.click:hover td{background:var(--soft)}
+.small{font-size:12.5px;color:var(--mut)}
+.badge{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:20px;background:#eef2ff;color:#3730a3}
+.b-active,.b-authenticated{background:#dcfce7;color:var(--ok)}.b-pending,.b-halted{background:#fee2e2;color:var(--bad)}
+.b-cancelled,.b-expired,.b-completed{background:#f3f4f6;color:#4b5563}.b-created{background:#fef3c7;color:var(--warn)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+.pager{display:flex;gap:8px;align-items:center;margin-top:12px}
+.check li{list-style:none;margin:4px 0}.check{padding:0;margin:0}
+.msg{padding:10px 14px;border-radius:8px;margin:0 0 14px;background:#dcfce7;color:var(--ok)}.msg.err{background:#fee2e2;color:var(--bad)}
+.kv td:first-child{color:var(--mut);width:180px}.kv td{white-space:normal}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px}
+.login{max-width:360px;margin:12vh auto;background:#fff;border:1px solid var(--line);border-radius:14px;padding:28px}
+.login h1{font-size:20px}.login input{width:100%;margin:8px 0 14px}
+code{background:#f3f4f6;padding:2px 6px;border-radius:4px;font-size:13px;word-break:break-all}
+.hide{display:none!important}
+</style>
+</head>
+<body>
+
+<div id="login" class="login hide">
+	<h1>Donations admin</h1>
+	<p class="small">Sanjeevini Sparsh Yoga</p>
+	<form id="login-form">
+		<label>Email<input type="email" name="email" autocomplete="username" required autofocus></label>
+		<label>Password<input type="password" name="password" autocomplete="current-password" required></label>
+		<button class="btn btn-p" style="width:100%;justify-content:center">Log in</button>
+		<p id="login-err" class="msg err hide" style="margin-top:12px"></p>
+	</form>
+	<p class="small">Admin accounts are set in <code>api/config.local.php</code> (or Render environment).</p>
+</div>
+
+<div id="app" class="hide">
+	<header class="top"><div class="top-in">
+		<div class="brand">Donations <span id="mode" class="mode"></span></div>
+		<nav class="tabs">
+			<a href="#dashboard" data-tab="dashboard">Dashboard</a>
+			<a href="#donors" data-tab="donors">Donors &amp; AutoPay</a>
+			<a href="#payments" data-tab="payments">Payments</a>
+			<a href="../" target="_blank">View donate page ↗</a>
+		</nav>
+		<span id="who" class="small"></span><button id="logout">Log out</button>
+	</div></header>
+	<div class="wrap" id="view"></div>
+</div>
+
+<script>
+(function () {
+	'use strict';
+	var API = '../api/admin.php';
+	var CSRF = '';
+	var $view = document.getElementById('view');
+
+	function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+	function call(action, params, body) {
+		var url = API + '?' + new URLSearchParams(Object.assign({ action: action }, params || {})).toString();
+		var opt = { credentials: 'same-origin', headers: { 'X-CSRF': CSRF } };
+		if (body) { var fd = new FormData(); Object.keys(body).forEach(function (k) { fd.append(k, body[k]); }); opt.method = 'POST'; opt.body = fd; }
+		return fetch(url, opt).then(function (r) {
+			return r.json().catch(function () { return { success: false, data: { message: 'Server not reachable (PHP needed).' } }; }).then(function (j) {
+				if (r.status === 401 && action !== 'login') { showLogin(); }
+				return j;
+			});
+		});
+	}
+	function badge(s, t) { return '<span class="badge b-' + esc(s) + '">' + esc(t) + '</span>'; }
+	function msg(text, err) { return text ? '<div class="msg' + (err ? ' err' : '') + '">' + esc(text) + '</div>' : ''; }
+	function showLogin() { document.getElementById('app').classList.add('hide'); document.getElementById('login').classList.remove('hide'); }
+	function showApp() { document.getElementById('login').classList.add('hide'); document.getElementById('app').classList.remove('hide'); route(); }
+	function setTab(t) { document.querySelectorAll('nav.tabs a[data-tab]').forEach(function (a) { a.classList.toggle('on', a.getAttribute('data-tab') === t); }); }
+	function paysTable(rows, compact) {
+		if (!rows.length) { return '<div class="tbl-wrap"><table><tr><td>No payments yet.</td></tr></table></div>'; }
+		var h = '<div class="tbl-wrap"><table><thead><tr><th>Date</th><th>Receipt</th>' + (compact ? '' : '<th>Donor</th>') + '<th>Amount</th><th>Type</th>' + (compact ? '' : '<th>Method</th><th>Campaign</th><th>Payment ID</th>') + '</tr></thead><tbody>';
+		rows.forEach(function (p) {
+			h += '<tr><td>' + esc(p.date) + '</td><td><a target="_blank" href="' + esc(p.receipt_url) + '">' + esc(p.receipt_no) + '</a></td>' +
+				(compact ? '' : '<td>' + esc(p.name) + '<div class="small">' + esc(p.email) + '</div></td>') +
+				'<td><strong>' + esc(p.amount) + '</strong></td><td>' + esc(p.type) + '</td>' +
+				(compact ? '' : '<td>' + esc(p.method) + '</td><td>' + esc(p.campaign || '—') + '</td><td class="small">' + esc(p.payment_id) + '</td>') + '</tr>';
+		});
+		return h + '</tbody></table></div>';
+	}
+	function pager(d, go) {
+		if (d.pages <= 1) { return ''; }
+		return '<div class="pager"><button data-pg="' + (d.page - 1) + '"' + (d.page <= 1 ? ' disabled' : '') + '>← Prev</button><span class="small">Page ' + d.page + ' of ' + d.pages + '</span><button data-pg="' + (d.page + 1) + '"' + (d.page >= d.pages ? ' disabled' : '') + '>Next →</button></div>';
+	}
+	function campaignSelect(list, cur) {
+		if (!list.length) { return ''; }
+		return '<select name="campaign"><option value="">All campaigns</option>' + list.map(function (c) { return '<option' + (c === cur ? ' selected' : '') + '>' + esc(c) + '</option>'; }).join('') + '</select>';
+	}
+	function exportUrl(what, params) { return API + '?' + new URLSearchParams(Object.assign({ action: 'export', what: what, csrf: CSRF }, params)).toString(); }
+
+	/* ---------- Dashboard ---------- */
+	function dashboard() {
+		setTab('dashboard');
+		$view.innerHTML = '<p class="small">Loading…</p>';
+		call('stats').then(function (res) {
+			if (!res.success) { $view.innerHTML = msg(res.data.message, true); return; }
+			var d = res.data, s = d.stats;
+			var m = document.getElementById('mode'); m.textContent = d.mode === 'live' ? 'LIVE' : 'TEST MODE'; m.className = 'mode mode-' + d.mode;
+			var done = d.checklist.filter(function (c) { return c[1]; }).length;
+			var h = '<h1>Dashboard</h1>';
+			if (done < d.checklist.length) {
+				h += '<div class="box"><strong>Setup checklist (' + done + ' of ' + d.checklist.length + ' done)</strong><ul class="check">' +
+					d.checklist.map(function (c) { return '<li>' + (c[1] ? '✅' : '⬜') + ' ' + esc(c[0]) + '</li>'; }).join('') + '</ul></div><br>';
+			}
+			h += '<div class="cards">' +
+				'<div class="card"><span>Active AutoPays</span><strong>' + s.active + '</strong></div>' +
+				'<div class="card"><span>Monthly recurring value</span><strong>' + esc(s.mrr) + '</strong></div>' +
+				'<div class="card"><span>Collected this month</span><strong>' + esc(s.month_total) + '</strong><em>' + s.month_count + ' payment' + (s.month_count === 1 ? '' : 's') + '</em></div>' +
+				'<div class="card"><span>Collected all time</span><strong>' + esc(s.all_total) + '</strong></div>' +
+				'<div class="card"><span>New donors this month</span><strong>' + s.new_donors + '</strong></div>' +
+				'<a class="card warn" href="#donors?status=attention"><span>Need attention (failed)</span><strong>' + s.attention + '</strong></a>' +
+				'<div class="card"><span>Cancelled this month</span><strong>' + s.cancelled + '</strong></div></div>';
+			h += '<div class="grid2"><div><h2>Recent payments</h2>' + paysTable(d.recent) + '<p><a href="#payments">All payments →</a></p></div><div>';
+			h += '<h2>Your pages</h2><div class="box" style="margin:0"><p>Donation page: <a target="_blank" href="' + esc(d.donate_url) + '">' + esc(d.donate_url) + '</a></p><p>Donor self-service: <a target="_blank" href="' + esc(d.donate_url) + 'my-donations.html">my-donations.html</a></p></div>';
+			h += '<h2>Webhook</h2><div class="box" style="margin:0"><p class="small">Razorpay webhook URL:</p><p><code>' + esc(d.webhook_url) + '</code></p><p>' + (d.webhook ? 'Last event: ' + esc(d.webhook) : '<span style="color:var(--bad)">No webhook received yet.</span> Set it up in Razorpay → Webhooks.') + '</p></div>';
+			h += '<h2>Tools</h2><div class="actions"><button id="t-api">Test Razorpay connection</button><button id="t-mail">Send test email</button></div><div id="t-out"></div>';
+			if (d.errors.length) {
+				h += '<details class="box"><summary>Recent errors (' + d.errors.length + ')</summary><ul>' + d.errors.map(function (e) { return '<li class="small">' + esc(e.time) + ' · ' + esc(e.what) + ': ' + esc(e.msg) + '</li>'; }).join('') + '</ul></details>';
+			}
+			h += '</div></div>';
+			$view.innerHTML = h;
+			document.getElementById('t-api').onclick = function () { call('test_api').then(function (r) { document.getElementById('t-out').innerHTML = msg(r.data.message, !r.success); }); };
+			document.getElementById('t-mail').onclick = function () { call('test_email', {}, { x: 1 }).then(function (r) { document.getElementById('t-out').innerHTML = msg(r.data.message, !r.success); }); };
+		});
+	}
+
+	/* ---------- Donors ---------- */
+	function donors(params) {
+		setTab('donors');
+		if (params.id) { return donor(params.id); }
+		call('subs', params).then(function (res) {
+			if (!res.success) { $view.innerHTML = msg(res.data.message, true); return; }
+			var d = res.data;
+			var h = '<h1>Donors &amp; AutoPay <span class="small">(' + d.total + ')</span></h1>';
+			h += '<form class="filters" id="f"><select name="status">' +
+				[['', 'All statuses'], ['live', 'Active / approved'], ['attention', 'Need attention'], ['created', 'Awaiting approval'], ['cancelled', 'Cancelled'], ['completed', 'Completed']].map(function (o) { return '<option value="' + o[0] + '"' + (o[0] === (params.status || '') ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('') +
+				'</select>' + campaignSelect(d.campaigns, params.campaign) + '<input type="search" name="s" placeholder="Name, email, phone, ID" value="' + esc(params.s || '') + '"><button>Filter</button>' +
+				'<a class="btn" href="' + esc(exportUrl('subs', { status: params.status || '', s: params.s || '', campaign: params.campaign || '' })) + '">⬇ Export to Excel (CSV)</a></form>';
+			h += '<div class="tbl-wrap"><table><thead><tr><th>Donor</th><th>Amount</th><th>Status</th><th>Paid</th><th>Next debit</th><th>Campaign</th><th>Started</th></tr></thead><tbody>';
+			if (!d.rows.length) { h += '<tr><td colspan="7">No donors found.</td></tr>'; }
+			d.rows.forEach(function (s) {
+				h += '<tr class="click" data-id="' + s.id + '"><td><strong>' + esc(s.name) + '</strong><div class="small">' + esc(s.email) + ' · ' + esc(s.phone) + '</div></td><td>' + esc(s.amount) + ' <span class="small">' + esc(s.freq) + '</span></td><td>' + badge(s.status, s.status_text) + '</td><td>' + esc(s.paid) + '</td><td>' + esc(s.next) + '</td><td>' + esc(s.campaign || '—') + '</td><td>' + esc(s.started) + '</td></tr>';
+			});
+			h += '</tbody></table></div>' + pager(d);
+			$view.innerHTML = h;
+			bindFilters('donors', params);
+			$view.querySelectorAll('tr[data-id]').forEach(function (tr) { tr.onclick = function () { location.hash = 'donors?id=' + tr.getAttribute('data-id'); }; });
+		});
+	}
+
+	function donor(id, note) {
+		call('sub', { id: id }).then(function (res) {
+			if (!res.success) { $view.innerHTML = msg(res.data.message, true); return; }
+			var s = res.data.sub;
+			var live = ['created', 'authenticated', 'active', 'pending', 'halted', 'paused'].indexOf(s.status) > -1;
+			var h = '<p><a href="#donors">← All donors</a></p>' + (note || '') + '<h1>' + esc(s.name) + ' ' + badge(s.status, s.status_text) + '</h1>';
+			h += '<div class="actions"><button data-do="sync">↻ Refresh from Razorpay</button>' +
+				(s.status === 'created' ? '<button data-do="link">✉ Email payment link to donor</button>' : '') +
+				'<a class="btn" target="_blank" href="' + esc(s.manage_url) + '">Donor manage page ↗</a>' +
+				'<a class="btn" target="_blank" href="' + esc(s.rzp_url) + '">Open in Razorpay ↗</a>' +
+				(live ? '<button class="btn-d" data-do="cancel">Cancel AutoPay</button>' : '') + '</div>';
+			var rows = [['Email', s.email], ['Phone', s.phone], ['Amount', s.amount + ' ' + s.freq], ['Payments', s.paid], ['Next debit', s.next], ['Started', s.started], ['Subscription ID', s.sub_id]];
+			if (s.pan) { rows.push(['PAN', s.pan]); }
+			if (s.address) { rows.push(['Address', s.address]); }
+			if (s.campaign) { rows.push(['Campaign', s.campaign]); }
+			if (s.dedication) { rows.push(['Dedication', s.dedication]); }
+			if (s.anonymous) { rows.push(['Anonymous', 'Yes']); }
+			if (s.short_url) { rows.push(['Approval link', s.short_url]); }
+			h += '<div class="tbl-wrap"><table class="kv">' + rows.map(function (r) { return '<tr><td>' + esc(r[0]) + '</td><td>' + esc(r[1]) + '</td></tr>'; }).join('') + '</table></div>';
+			h += '<h2>Payments</h2>' + paysTable(res.data.payments, true);
+			$view.innerHTML = h;
+			$view.querySelectorAll('[data-do]').forEach(function (b) {
+				b.onclick = function () {
+					var d = b.getAttribute('data-do');
+					if (d === 'cancel' && !window.confirm('Cancel this AutoPay immediately? The donor will be emailed.')) { return; }
+					b.disabled = true;
+					call('sub_action', {}, { id: id, do: d }).then(function (r) { donor(id, msg(r.data.message, !r.success)); });
+				};
+			});
+		});
+	}
+
+	/* ---------- Payments ---------- */
+	function payments(params) {
+		setTab('payments');
+		call('payments', params).then(function (res) {
+			if (!res.success) { $view.innerHTML = msg(res.data.message, true); return; }
+			var d = res.data;
+			var h = '<h1>Payments <span class="small">(' + d.total + ' · ' + esc(d.sum) + ')</span></h1>';
+			h += '<form class="filters" id="f"><select name="type"><option value="">All types</option><option value="recurring"' + (params.type === 'recurring' ? ' selected' : '') + '>AutoPay</option><option value="onetime"' + (params.type === 'onetime' ? ' selected' : '') + '>One-time</option></select>' +
+				'<input type="month" name="month" value="' + esc(params.month || '') + '">' + campaignSelect(d.campaigns, params.campaign) +
+				'<input type="search" name="s" placeholder="Name, email, receipt, ID" value="' + esc(params.s || '') + '"><button>Filter</button>' +
+				'<a class="btn" href="' + esc(exportUrl('payments', { type: params.type || '', month: params.month || '', s: params.s || '', campaign: params.campaign || '' })) + '">⬇ Export to Excel (CSV)</a></form>';
+			h += paysTable(d.rows) + pager(d);
+			$view.innerHTML = h;
+			bindFilters('payments', params);
+		});
+	}
+
+	function bindFilters(tab, params) {
+		var f = document.getElementById('f');
+		f.onsubmit = function (e) {
+			e.preventDefault();
+			var p = {}; new FormData(f).forEach(function (v, k) { if (v) { p[k] = v; } });
+			location.hash = tab + '?' + new URLSearchParams(p).toString();
+		};
+		$view.querySelectorAll('[data-pg]').forEach(function (b) {
+			b.onclick = function () { var p = Object.assign({}, params, { page: b.getAttribute('data-pg') }); location.hash = tab + '?' + new URLSearchParams(p).toString(); };
+		});
+	}
+
+	function route() {
+		var hash = location.hash.replace(/^#/, '') || 'dashboard';
+		var parts = hash.split('?');
+		var params = {}; new URLSearchParams(parts[1] || '').forEach(function (v, k) { params[k] = v; });
+		window.scrollTo(0, 0);
+		if (parts[0] === 'donors') { donors(params); } else if (parts[0] === 'payments') { payments(params); } else { dashboard(); }
+	}
+
+	window.addEventListener('hashchange', function () { if (CSRF) { route(); } });
+	document.getElementById('logout').onclick = function () { call('logout').then(function () { CSRF = ''; showLogin(); }); };
+	document.getElementById('login-form').onsubmit = function (e) {
+		e.preventDefault();
+		var err = document.getElementById('login-err');
+		call('login', {}, { email: this.email.value, password: this.password.value }).then(function (r) {
+			if (!r.success) { err.textContent = r.data.message; err.classList.remove('hide'); return; }
+			CSRF = r.data.csrf; document.getElementById('who').textContent = r.data.email || ''; showApp();
+		});
+	};
+	call('me').then(function (r) {
+		if (r.success && r.data.logged_in) { CSRF = r.data.csrf; document.getElementById('who').textContent = r.data.email || ''; showApp(); } else { showLogin(); if (!r.success) { var e = document.getElementById('login-err'); e.textContent = r.data.message; e.classList.remove('hide'); } }
+	});
+})();
+</script>
+</body>
+</html>

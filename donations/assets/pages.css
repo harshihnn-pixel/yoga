@@ -1,0 +1,78 @@
+/* Donor pages: receipt, manage, portal, statement */
+:root { --ssyad-color: #7c5cc4; }
+* { box-sizing: border-box; }
+body.ssyad-page {
+	margin: 0; background: #f7f4fc; color: #2a2340;
+	font: 15px/1.55 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+.ssyad-sheet {
+	max-width: 760px; margin: 32px auto; background: #fff; border: 1px solid #e5e7eb;
+	border-radius: 14px; padding: 32px; box-shadow: 0 10px 30px rgba(17,24,39,.06);
+}
+.ssyad-head { display: flex; gap: 16px; align-items: center; padding-bottom: 18px; margin-bottom: 18px; border-bottom: 3px solid var(--ssyad-color); }
+.ssyad-logo { max-height: 64px; max-width: 160px; }
+.ssyad-org { font-size: 1.35em; font-weight: 700; }
+.ssyad-muted { color: #6b7280; }
+.ssyad-small { font-size: .85em; }
+h1 { font-size: 1.5em; margin: 0 0 12px; }
+h2 { font-size: 1.1em; margin: 28px 0 10px; }
+.ssyad-doc-title { text-align: center; letter-spacing: .02em; }
+.ssyad-ids { text-align: center; color: #4b5563; font-size: .9em; margin-top: -4px; }
+a { color: var(--ssyad-color); }
+
+.ssyad-kv { width: 100%; border-collapse: collapse; margin: 12px 0; }
+.ssyad-kv th, .ssyad-kv td { padding: 9px 10px; border-bottom: 1px solid #eef0f2; text-align: left; vertical-align: top; }
+.ssyad-kv th { width: 38%; color: #6b7280; font-weight: 500; }
+.ssyad-kv td { font-weight: 600; }
+
+.ssyad-list { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: .92em; }
+.ssyad-list th, .ssyad-list td { padding: 8px; border-bottom: 1px solid #eef0f2; text-align: left; }
+.ssyad-list th { background: #f9fafb; font-weight: 600; color: #374151; }
+.ssyad-total td { font-weight: 700; border-top: 2px solid #1f2937; }
+
+.ssyad-80g { margin: 20px 0; padding: 14px 16px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; font-size: .92em; }
+.ssyad-sign { margin: 36px 0 12px auto; width: 260px; text-align: center; }
+.ssyad-sign-line { border-top: 1px solid #1f2937; margin-bottom: 6px; height: 40px; }
+
+.ssyad-button, .ssyad-btn {
+	display: inline-block; border: 0; border-radius: 10px; padding: 11px 18px; background: var(--ssyad-color);
+	color: #fff !important; font: inherit; font-weight: 600; cursor: pointer; text-decoration: none;
+}
+.ssyad-button-danger { background: #b91c1c; }
+.ssyad-actions { text-align: right; margin-bottom: 10px; }
+
+.ssyad-status { display: inline-block; padding: 4px 12px; border-radius: 999px; font-weight: 600; font-size: .88em; background: #e5e7eb; }
+.ssyad-status-active, .ssyad-status-authenticated { background: #dcfce7; color: #166534; }
+.ssyad-status-pending, .ssyad-status-halted { background: #fef3c7; color: #92400e; }
+.ssyad-status-cancelled, .ssyad-status-expired { background: #fee2e2; color: #991b1b; }
+.ssyad-status-completed { background: #dbeafe; color: #1e40af; }
+
+.ssyad-alert { padding: 12px 14px; border-radius: 10px; background: #ecfdf5; color: #065f46; margin: 12px 0; }
+.ssyad-alert-err { background: #fef2f2; color: #991b1b; }
+
+.ssyad-cancel { margin-top: 28px; padding: 18px; border: 1px solid #fecaca; border-radius: 12px; background: #fffafa; }
+.ssyad-cancel h2 { margin-top: 0; }
+
+.ssyad-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+.ssyad-cards div { background: #f9fafb; border: 1px solid #eef0f2; border-radius: 12px; padding: 14px; }
+.ssyad-cards span { display: block; color: #6b7280; font-size: .85em; }
+.ssyad-cards strong { font-size: 1.4em; color: var(--ssyad-color); }
+.ssyad-pill { display: inline-block; padding: 6px 12px; margin: 0 6px 6px 0; border: 1.5px solid var(--ssyad-color); border-radius: 999px; font-weight: 600; text-decoration: none; }
+
+.ssyad-portal-form { display: grid; gap: 10px; max-width: 420px; }
+.ssyad-field { display: flex; flex-direction: column; gap: 5px; font-weight: 600; font-size: .9em; }
+.ssyad-field input { border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 10px 12px; font: inherit; font-weight: 400; }
+.ssyad-hp { position: absolute; left: -9999px; }
+.ssyad-foot { margin-top: 28px; padding-top: 14px; border-top: 1px solid #eef0f2; font-size: .9em; }
+
+@media (max-width: 600px) {
+	.ssyad-sheet { margin: 0; border-radius: 0; padding: 20px 16px; border: 0; }
+	.ssyad-kv th { width: 45%; }
+	.ssyad-list { font-size: .82em; }
+}
+@media print {
+	body.ssyad-page { background: #fff; }
+	.ssyad-sheet { box-shadow: none; border: 0; margin: 0; padding: 0; max-width: none; }
+	.no-print { display: none !important; }
+	a { color: inherit; text-decoration: none; }
+}

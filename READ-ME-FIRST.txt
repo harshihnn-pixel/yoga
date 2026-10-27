@@ -1,0 +1,35 @@
+SANJEEVINI SPARSH YOGA – WEBSITE FILES WITH DONATIONS (no WordPress)
+====================================================================
+
+WHAT IS IN THIS ZIP
+  index.html, about_us.html, our_services.html, sathvik-food-diet.html,
+  courses.html, gallery.html, blogs.html, contact_us.html
+      -> your 8 website pages, exactly as they are live today, with ONE change:
+         "Donate" added to the menu (between Blogs and Contact Us).
+  donations/
+      -> the complete donation system (Donate page, receipts, My donations,
+         Manage/Cancel AutoPay, annual statements, admin dashboard).
+  README-donations.txt
+      -> settings + Razorpay setup for the donations folder.
+
+Images, CSS and other files of the website are NOT in this zip – they are
+already on the server and do not change.
+
+RUN IT ON YOUR COMPUTER (VS CODE)
+  1. One time only: install XAMPP (double-click xampp-windows-x64-8.2.12-0-VS16-installer.exe
+     in Downloads, click Next until Finish). You do NOT need to open the XAMPP Control Panel.
+  1b. Copy donations/api/config.local.example.php -> config.local.php and add your TEST keys.
+  2. VS Code > File > Open Folder > this "sanjeevinisparshyoga-website" folder.
+  3. VS Code menu Terminal > New Terminal, type   .\START-WEBSITE.bat   and press Enter.
+  4. Ctrl+Click  http://localhost:8000/index.html  in the terminal.
+  5. To stop: click in the terminal and press Ctrl+C.
+  (router.php and START-WEBSITE.bat are only for your computer – never upload them.)
+
+NOTHING HAS BEEN UPLOADED. When you are ready to go live:
+  1. Put your keys/passwords in donations/api/config.local.php
+     (copy config.local.example.php). Other settings are in config.php.
+  2. Hosting File Manager -> public_html -> upload these 8 .html files (NOT router.php / START-WEBSITE.bat)
+     (replace the old ones) and the "donations" folder.
+  3. Add the Razorpay webhook (see README-donations.txt).
+
+TEST HOSTING ON RENDER: see README-RENDER.txt

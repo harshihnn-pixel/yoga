@@ -1,0 +1,159 @@
+/* Full-page /donations layout – matches sanjeevinisparshyoga.com (Yota theme) */
+body.ssyad-landing {
+	--ssyl-text: #46504a;
+	--ssyl-green: #415649;
+	--ssyl-copper: #bb8257;
+	--ssyl-cream: #f1ebea;
+	margin: 0;
+	background: #f7f4fc;
+	color: #2a2340;
+	font: 16px/1.55 -apple-system, "Segoe UI", Roboto, "Noto Sans", Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+body.ssyad-landing * { box-sizing: border-box; }
+.ssyl-wrap { width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+
+/* Header – same as the main website */
+.ssyl-top { background: var(--ssyl-cream); position: relative; z-index: 20; }
+.ssyl-top-inner {
+	display: flex; align-items: center; justify-content: space-between; gap: 20px;
+	max-width: 1320px; margin: 0 auto; padding: 22px 24px; min-height: 96px;
+}
+.ssyl-brand { display: inline-flex; align-items: center; flex: 0 0 auto; text-decoration: none; color: var(--ssyl-text); font-family: Marcellus, serif; font-size: 1.3rem; }
+.ssyl-brand img { display: block; width: 267px; max-width: 100%; height: auto; }
+.ssyl-menu { display: flex; align-items: center; gap: 28px; }
+.ssyl-menu ul { list-style: none; display: flex; align-items: center; gap: 26px; margin: 0; padding: 0; }
+.ssyl-menu ul a {
+	font-family: Marcellus, serif; font-size: 17px; font-weight: 600; color: var(--ssyl-text);
+	text-decoration: none; line-height: 1.5; transition: color .2s;
+}
+.ssyl-menu ul a:hover, .ssyl-menu ul a.is-current { color: var(--ssyl-copper); }
+.ssyl-call {
+	display: inline-block; background: var(--ssyl-green); color: #fff !important; text-decoration: none;
+	font-family: Marcellus, serif; font-size: 16px; font-weight: 600; line-height: 1; padding: 13px 22px;
+	border: 1px solid var(--ssyl-green); white-space: nowrap; transition: background .2s, color .2s;
+}
+.ssyl-call:hover { background: transparent; color: var(--ssyl-green) !important; }
+.ssyl-menu-toggle { position: absolute; opacity: 0; pointer-events: none; }
+.ssyl-burger { display: none; width: 30px; height: 22px; position: relative; cursor: pointer; flex-direction: column; justify-content: space-between; }
+.ssyl-burger span { display: block; height: 2px; background: var(--ssyl-text); border-radius: 2px; }
+.ssyl-burger span:last-child { width: 70%; margin-left: auto; }
+
+@media (max-width: 1199px) {
+	.ssyl-top-inner { flex-wrap: wrap; min-height: 76px; padding: 14px 20px; }
+	.ssyl-brand img { width: 220px; }
+	.ssyl-burger { display: flex; }
+	.ssyl-menu { display: none; width: 100%; flex-direction: column; align-items: flex-start; gap: 14px; padding: 8px 0 12px; }
+	.ssyl-menu ul { flex-direction: column; align-items: flex-start; gap: 12px; width: 100%; }
+	.ssyl-menu-toggle:checked ~ .ssyl-menu { display: flex; }
+}
+
+/* Hero */
+.ssyl-hero {
+	position: relative;
+	color: #fff;
+	padding: 56px 0 120px;
+	background:
+		radial-gradient(circle at 85% 20%, rgba(255,255,255,.18), transparent 45%),
+		linear-gradient(135deg, color-mix(in srgb, var(--ssyad-color) 80%, #ffffff), color-mix(in srgb, var(--ssyad-color) 70%, #2a1b4f));
+	overflow: hidden;
+}
+.ssyl-hero.has-img {
+	background: linear-gradient(90deg, rgba(42,27,79,.82), rgba(42,27,79,.4)), var(--ssyl-img) center / cover no-repeat;
+}
+.ssyl-hero .ssyl-wrap { position: relative; }
+.ssyl-eyebrow {
+	display: inline-flex; gap: 6px; align-items: center; margin: 0 0 14px;
+	background: rgba(255,255,255,.16); padding: 5px 12px; border-radius: 999px; font-size: .85rem; font-weight: 600;
+}
+.ssyl-hero h1 { margin: 0; max-width: 640px; font-size: clamp(1.9rem, 4.2vw, 3rem); line-height: 1.12; letter-spacing: -.01em; color: #fff; }
+.ssyl-lead { max-width: 580px; margin: 16px 0 0; font-size: 1.08rem; opacity: .92; }
+
+/* Main */
+.ssyl-main {
+	display: grid;
+	grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+	gap: 28px;
+	margin-top: -84px;
+	padding-bottom: 56px;
+	position: relative;
+	align-items: start;
+}
+.ssyl-form-col .ssyad { max-width: none; margin: 0; box-shadow: 0 20px 50px rgba(15, 23, 42, .12); }
+.ssyl-side { display: grid; gap: 16px; padding-top: 100px; }
+.ssyl-card { background: #fff; border: 1px solid #e9e3f5; border-radius: 16px; padding: 20px; }
+.ssyl-card h2 { margin: 0 0 12px; font-size: 1.05rem; }
+.ssyl-card .ssyad-progress, .ssyl-card .ssyad-wall { margin: 0; max-width: none; }
+.ssyl-card .ssyad-wall .ssyad-title { font-size: 1.05rem; margin-bottom: 4px; }
+
+.ssyl-steps { list-style: none; counter-reset: s; margin: 0; padding: 0; display: grid; gap: 14px; }
+.ssyl-steps li { display: grid; grid-template-columns: 36px 1fr; column-gap: 12px; }
+.ssyl-steps li > i {
+	grid-row: span 2; width: 36px; height: 36px; border-radius: 50%;
+	background: color-mix(in srgb, var(--ssyad-color) 12%, #fff); color: var(--ssyad-color);
+	display: flex; align-items: center; justify-content: center; font-size: 15px;
+}
+.ssyl-steps strong { font-size: .98rem; }
+.ssyl-steps span { color: #5b5174; font-size: .92rem; }
+
+.ssyl-points { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.ssyl-points li { position: relative; padding-left: 30px; color: #46504a; font-size: .95rem; }
+.ssyl-points li > i { position: absolute; left: 0; top: 4px; width: 20px; text-align: center; color: var(--ssyad-color); font-size: 17px; }
+
+/* Mission card */
+.ssyl-mission p { margin: 0 0 10px; color: #4b4163; font-size: .95rem; }
+.ssyl-mission p:last-child { margin-bottom: 0; }
+
+/* Causes */
+.ssyl-section { padding: 8px 0 56px; }
+.ssyl-section-title { text-align: center; font-size: clamp(1.5rem, 3vw, 2rem); margin: 0 0 24px; color: #2a2340; }
+.ssyl-causes { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+.ssyl-cause { background: #fff; border: 1px solid #e9e3f5; border-radius: 18px; padding: 26px 22px; text-align: center; }
+.ssyl-cause-icon {
+	display: inline-flex; width: 64px; height: 64px; border-radius: 50%; align-items: center; justify-content: center;
+	background: color-mix(in srgb, var(--ssyad-color) 12%, #fff); margin-bottom: 14px;
+}
+.ssyl-cause-icon i { font-size: 28px; color: var(--ssyad-color); }
+.ssyl-cause h3 { margin: 0 0 8px; font-size: 1.1rem; color: #2a2340; }
+.ssyl-cause p { margin: 0; color: #5b5174; font-size: .95rem; }
+
+/* Closing */
+.ssyl-closing {
+	padding: 56px 0;
+	background: linear-gradient(135deg, color-mix(in srgb, var(--ssyad-color) 10%, #fff), color-mix(in srgb, var(--ssyad-color) 20%, #fff));
+}
+.ssyl-closing-inner { max-width: 760px; text-align: center; }
+.ssyl-closing h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 0 0 16px; color: #2a2340; }
+.ssyl-closing p { color: #4b4163; margin: 0 0 14px; font-size: 1.02rem; }
+.ssyl-cta {
+	display: inline-block; margin: 10px 0 18px; padding: 14px 26px; border-radius: 999px;
+	background: var(--ssyad-color); color: #fff !important; font-weight: 700; text-decoration: none;
+	box-shadow: 0 10px 24px color-mix(in srgb, var(--ssyad-color) 30%, transparent);
+}
+.ssyl-cta:hover { filter: brightness(1.08); }
+.ssyl-signoff { font-style: italic; color: #5b5174 !important; }
+html { scroll-behavior: smooth; }
+
+/* Simple pages (My donations) */
+.ssyl-simple { max-width: 620px; padding-top: 40px; padding-bottom: 56px; }
+.ssyl-simple .ssyad { max-width: none; }
+.ssyl-simple .ssyad-portal-form h2 { margin-top: 0; }
+.ssyl-simple .ssyad-field input { border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 11px 12px; font: inherit; font-weight: 400; }
+.ssyl-simple .ssyad-button { margin-top: 4px; }
+
+/* Footer – same as the main website */
+.ssyl-foot { background: var(--ssyl-text); color: #fff; text-align: center; padding: 15px 20px; }
+.ssyl-foot p { margin: 0; font-family: Marcellus, serif; font-size: 13px; line-height: 20px; }
+.ssyl-foot a { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
+.ssyl-foot-sep { margin: 0 6px; opacity: .7; }
+
+@media (max-width: 900px) {
+	.ssyl-hero { padding: 36px 0 96px; }
+	.ssyl-main { grid-template-columns: 1fr; margin-top: -72px; gap: 16px; }
+	.ssyl-side { padding-top: 0; }
+}
+@media (max-width: 520px) {
+	.ssyl-wrap { padding: 0 16px; }
+	.ssyl-hero { padding: 28px 0 88px; }
+	.ssyl-lead { font-size: 1rem; }
+}

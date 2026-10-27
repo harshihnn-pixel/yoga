@@ -1,0 +1,5 @@
+.git
+START-WEBSITE.bat
+donations/api/config.local.php
+donations/api/data/*.sqlite*
+donations/api/data/secret.php
